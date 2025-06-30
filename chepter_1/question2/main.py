@@ -7,14 +7,17 @@ message = []
 #리스트 객채로 변환
 #######################################################
 #timestamp, event, message리스트에 나누어 저장
-with open('chepter_1/question2/mission_computer_main.log', 'r', encoding='utf8' ) as file_data:
-  next(file_data)  
-  for line in file_data:
-    parts = line.strip().split(',')
-    if len(parts) >= 3:
-      timestamp.append(parts[0])
-      event.append(parts[1])
-      message.append(parts[2])
+try:
+  with open('chepter_1/question2/mission_computer_main.log', 'r', encoding='utf8' ) as file_data:
+    next(file_data)  
+    for line in file_data:
+      parts = line.strip().split(',')
+      if len(parts) >= 3:
+        timestamp.append(parts[0])
+        event.append(parts[1])
+        message.append(parts[2])
+except Exception as e:
+  print(e)
 
 
 
@@ -51,6 +54,13 @@ loc_dic = {timestamp[i]: {'event': event[i], 'message': message[i]} for i in ran
 
 #사전 객체로 전환된 내용을 mission_computer_main.json 파일로 저장하는데 파일 포멧은 JSON(JavaScript Ontation)으로 저장한다.
 ######################################################
-file_path = 'mission_computer_main.json'
-with open(file_path,'w', encoding='UTF-8') as f:
-  json.dump(loc_dic, f)
+file_path = 'chepter_1/question2/mission_computer_main.json'
+try:
+  with open(file_path,'w', encoding='UTF-8') as f:
+    json.dump(loc_dic, f)
+except Exception as e:
+  print(e)
+
+search_value = str(input())
+filtered = {k: v for k, v in loc_dic.items() if search_value in v}  
+print(filtered)
