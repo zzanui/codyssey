@@ -2,26 +2,28 @@
 import traceback
 
 Mars_Base_Inventory = []
+
+#1.Mars_Base_Inventory_List.csv 의 내용을 읽어 들어서 출력
 try:
     with open("chepter_1/question3/Mars_Base_Inventory_List.csv", 'r') as mars:
         next(mars)#첫줄 스킵  
         for mar in mars:
+            print(mar)
+            #2. Mars_Base_Inventory_List.csv 내용을 읽어서 Python의 리스트(List) 객체로 변환
             Mars_Base_Inventory.append(mar.strip().split(','))
-
 except Exception as e:
     print(traceback.format_exc())
-# print(Mars_Base_Inventory)
 
 
-#인화성을 기준으로 인화성이 높은 순으로 정렬
+#3. 인화성을 기준으로 인화성이 높은 순으로 정렬
 Mars_Base_Inventory.sort(key=lambda x:x[4], reverse=True)
 
 
-#인화성 지수가 0.7 이상인 리스트 별도로 관리 및 출력
+#4, 인화성 지수가 0.7 이상인 리스트 별도로 관리 및 출력
 filtered_Mars_Base_Inventory = [row for row in Mars_Base_Inventory if float(row[4]) >= 0.7]
-# print(filtered_Mars_Base_Inventory)
+print(filtered_Mars_Base_Inventory)
 
-#인화성 지수가 0.7 이상되는 목록을 CSV 포멧(Mars_Base_Inventory_danger.csv)으로 저장
+#5. 인화성 지수가 0.7 이상되는 목록을 CSV 포멧(Mars_Base_Inventory_danger.csv)으로 저장
 try:
     with open('chepter_1/question3/Mars_Base_Inventory_danger.csv', 'w', encoding='utf-8') as f:
         for line in filtered_Mars_Base_Inventory:
