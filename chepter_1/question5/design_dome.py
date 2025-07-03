@@ -65,7 +65,7 @@ parts2 = np.genfromtxt(
 
 #보너스2. parts2의 내용을 기반으로 전치행렬을 구하고 그 내용을 parts3에 저장하고 출력한다.
 #넘파이 배열의 T 속성을 사용하면 배열의 전치행렬을 빠르게 구할 수 있습니다
-#vstack = vertical stack = 위에서 아래로 행 방향으로 붙이기
+#vstack = vertical stack = 위에서 아래로 행 방향으로 붙이기/ 문자가 포함되어있는 numpy의 구조화배열은 전치행렬을 구할 수 없으므로 일반배열로 변경한 후 전치행렬을 구한다.
 parts_array = np.vstack([parts2[name] for name in parts2.dtype.names])
 part3 = parts_array.T
 print(part3)

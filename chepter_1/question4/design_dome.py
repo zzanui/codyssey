@@ -12,14 +12,11 @@ def sphere_area(diameter, material, thickness):
     #전역변수 설정
     global area, weight 
 
-
     #공식의 경우 chat gpt를 사용해서 알아보았습니다.
     #면적을 구하는 공식3⋅π⋅반지름 2
     radius = diameter / 2
     #6. 소수점 이하 세 자리까지만 출력해서 결과가 지나치게 길어지는 것을 피한다.
     area = round(3 * 3.14 * (radius ** 2), 3)
-
-    
 
     volume = area * thickness  # cm³
     mass_earth = volume * density[material]  # g
