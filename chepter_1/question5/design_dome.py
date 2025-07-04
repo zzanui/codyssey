@@ -40,6 +40,7 @@ for part, strength in parts:
         parts_dic[part]['count'] += 1
     else:
         parts_dic[part] = {'sum': strength, 'count': 1}
+
 part_avg = np.array(
     [
         [part, round(values['sum'] / values['count'], 3)] for part, values in parts_dic.items()
@@ -58,14 +59,11 @@ np.savetxt('chepter_1/question5/parts_to_work_on.csv', filtered, delimiter=',', 
 parts2 = np.genfromtxt(
     'chepter_1/question5/parts_to_work_on.csv', 
     delimiter=',',          #csv는 ,을 기준으로 나누어져 있기 때문
-    dtype=None,             #데이터 타입은 자동으로 지정
+    dtype=str,             #정수가 이제 필요없으므로 문자형 배열로 가져옴
     encoding='utf-8-sig',   #BOM파일로 인한 에러를 방지하기위해 사용
-    names=True              #열이름으로 데이터에 접근이 가능하게 함
     )
 
 #보너스2. parts2의 내용을 기반으로 전치행렬을 구하고 그 내용을 parts3에 저장하고 출력한다.
 #넘파이 배열의 T 속성을 사용하면 배열의 전치행렬을 빠르게 구할 수 있습니다
-#vstack = vertical stack = 위에서 아래로 행 방향으로 붙이기/ 문자가 포함되어있는 numpy의 구조화배열은 전치행렬을 구할 수 없으므로 일반배열로 변경한 후 전치행렬을 구한다.
-parts_array = np.vstack([parts2[name] for name in parts2.dtype.names])
-part3 = parts_array.T
+part3 = parts2.T
 print(part3)
