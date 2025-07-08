@@ -68,12 +68,12 @@ class DummySensor:
         return env_values
 
 
+if __name__ == "__main__":
+    #6. ds라는 이름으로 인스턴스(Instance)로 만든다.
+    ds = DummySensor()
 
-#6. ds라는 이름으로 인스턴스(Instance)로 만든다.
-ds = DummySensor()
+    #7. 인스턴스화 한 DummySensor 클래스에서 set_env()와 get_env()를 차례로 호출해서 값을 확인한다.
+    ds.set_env()
+    print(ds.get_env())
 
-#7. 인스턴스화 한 DummySensor 클래스에서 set_env()와 get_env()를 차례로 호출해서 값을 확인한다.
-ds.set_env()
-print(ds.get_env())
-
-#8. 전체 코드를 mars_mission_computer.py 파일로 저장한다.
+    #8. 전체 코드를 mars_mission_computer.py 파일로 저장한다.

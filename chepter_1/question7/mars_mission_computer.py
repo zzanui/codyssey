@@ -1,7 +1,9 @@
 #다른폴더에 존재하는 DummySensor 클래스를 가져오기 위해 sys.path에 경로를 추가합니다.('/workspaces/codyssey/chepter_1')
 import sys, os, time, json
 #해당코드를 사용했을 경우 경로가 추가되는 구조를 물어보는게 좋을 것 같다.
+#/workspaces/codyssey/chepter_1
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from question6.mars_mission_computer import DummySensor
 
 #1. 미션 컴퓨터에 해당하는 클래스를 생성한다. 클래스의 이름은 MissionComputer로 정의한다.
@@ -60,18 +62,21 @@ class MissionComputer:
                 # env_values의 값을 출력한다. 이때 환경 정보의 값은 json 형태로 화면에 출력한다.
                 json_env_values = json.dumps(env_values)
                 print(json_env_values)
-                print("종료하려면 Ctrl+C")
+                print("\n종료하려면 Ctrl+C")
                 # 위의 두 가지 동작을 5초에 한번씩 반복한다.
                 time.sleep(5)
                 count += 1
 
                 #보너스2. 5분에 한번씩 각 환경값에 대한 5분 평균 값을 별도로 출력한다.
                 # 5분(300초)마다 평균 출력 (5초 * 60 = 300초)
-                if count == 60:
+                # if count == 60:
+                #테스트를 위해 1분(60초)로 조정(5초 * 12 = 60초)
+                if count == 12:
                     avg_values = {}
                     for key, values in history.items():
                         avg_values[key] = sum(values) / len(values) if values else 0.0
-                    print("5분 평균값:", json.dumps(avg_values))
+                    #count // 12 == n분
+                    print(f"\n{count//12}분 평균값:", json.dumps(avg_values,ensure_ascii=False, indent=4))
                     # 리스트 초기화
                     for key in history:
                         history[key] = []
@@ -79,7 +84,7 @@ class MissionComputer:
 
         #보너스1. 특정 키를 입력할 경우 반복적으로 출력되던 화성 기지의 환경에 대한 출력을 멈추고 ‘Sytem stoped….’ 를 출력 할 수 있어야 한다.
         except KeyboardInterrupt:#컨트롤 + c 입력시
-            print("Sytem stoped….")
+            print("\nSytem stoped….")
 
 
 
@@ -87,13 +92,12 @@ class MissionComputer:
 
 
 
+if __name__ == "__main__":
+    #7. MissionComputer 클래스를 RunComputer 라는 이름으로 인스턴스화 한다.
+    RunComputer  = MissionComputer()
 
+    #8. RunComputer 인스턴스의 get_sensor_data() 메소드를 호출해서 지속적으로 환경에 대한 값을 출력 할 수 있도록 한다.
+    RunComputer.get_sensor_data()
 
-#7. MissionComputer 클래스를 RunComputer 라는 이름으로 인스턴스화 한다.
-RunComputer  = MissionComputer()
-
-#8. RunComputer 인스턴스의 get_sensor_data() 메소드를 호출해서 지속적으로 환경에 대한 값을 출력 할 수 있도록 한다.
-RunComputer.get_sensor_data()
-
-#9. 전체 코드를 mars_mission_computer.py 파일로 저장한다.
+    #9. 전체 코드를 mars_mission_computer.py 파일로 저장한다.
 
