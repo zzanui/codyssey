@@ -39,7 +39,7 @@ class DummySensor:
         env_values = self.env_values
         set_values = [#랜덤 범위들
                         [18.0,30.0],
-                        [0.0,20.0],
+                        [0.0,21.0],
                         [50.0,60.0],
                         [500.0,715.0],
                         [0.02,0.1],
