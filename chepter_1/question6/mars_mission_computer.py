@@ -77,3 +77,5 @@ if __name__ == "__main__":
     print(ds.get_env())
 
     #8. 전체 코드를 mars_mission_computer.py 파일로 저장한다.
+
+

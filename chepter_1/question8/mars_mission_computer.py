@@ -18,10 +18,11 @@ class MissionComputer_2(MissionComputer):
             "운영체제 버전": platform.version(),# 운영체계 버전
             "CPU 타입": platform.processor(),# CPU의 타입
             "CPU코어 수": psutil.cpu_count(logical=True),# CPU의 코어 수
-            "메모리의 크기": f'{psutil.virtual_memory().total / (1024 ** 3):.2f} GB',# 메모리의 크기(총 크기를 gb로 표시함)
+            "메모리의 크기": f'{psutil.virtual_memory().total / (1024 ** 3):.2f} GB',# 메모리의 크기(총 크기를 bytes -> gb로 표시함)
         }
         #2. get_mission_computer_info()에 가져온 시스템 정보를 JSON 형식으로 출력하는 코드를 포함한다.
-        return (json.dumps(mission_computer_info, ensure_ascii=False, indent=4))#(출력할 dic, 한글이 깨지지않게, 들여쓰기)
+        #(출력할 dic, 한글이 깨지지않게, 들여쓰기)
+        return (json.dumps(mission_computer_info, ensure_ascii=False, indent=4))
 
     #3. 미션 컴퓨터의 부하를 가져오는 코드를 get_mission_computer_load() 메소드로 만들고 MissionComputer 클래스에 추가
     def get_mission_computer_load(self):
@@ -31,7 +32,8 @@ class MissionComputer_2(MissionComputer):
             '메모리 실시간 사용량' :psutil.virtual_memory().percent,# 메모리 실시간 사용량(률)
         }
         #5. get_mission_computer_load()에 해당 결과를 JSON 형식으로 출력하는 코드를 추가한다.
-        return (json.dumps(mission_computer_load, ensure_ascii=False, indent=4))#(출력할 dic, 한글이 깨지지않게, 들여쓰기)
+        #(출력할 dic, 한글이 깨지지않게, 들여쓰기)
+        return (json.dumps(mission_computer_load, ensure_ascii=False, indent=4))
             
 
 

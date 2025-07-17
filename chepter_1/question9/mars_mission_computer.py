@@ -19,6 +19,7 @@ class MissionComputer_3(MissionComputer_2):
     def get_mission_computer_load(self):
         while(True):
             print(super().get_mission_computer_load())
+            # time.sleep(20)
             time.sleep(20)
 
 

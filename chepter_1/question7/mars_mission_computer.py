@@ -9,9 +9,7 @@ from question6.mars_mission_computer import DummySensor
 #1. 미션 컴퓨터에 해당하는 클래스를 생성한다. 클래스의 이름은 MissionComputer로 정의한다.
 class MissionComputer:
     #2 미션 컴퓨터에는 화성 기지의 환경에 대한 값을 저장할 수 있는 사전(Dict) 객체가 env_values라는 속성으로 포함되어야 한다.
-    env_values={
-        
-    }
+    env_values={}
 
     #3 .env_values라는 속성 안에는 다음과 같은 내용들이 구현 되어야 한다.
         # 화성 기지 내부 온도 (mars_base_internal_temperature)
@@ -21,8 +19,7 @@ class MissionComputer:
         # 화성 기지 내부 이산화탄소 농도 (mars_base_internal_co2)
         # 화성 기지 내부 산소 농도 (mars_base_internal_oxygen)
     def __init__(self):
-        env_values = self.env_values
-        env_values={
+        self.env_values={
             'mars_base_internal_temperature' : 0.0,
             'mars_base_external_temperature' : 0.0,
             'mars_base_internal_humidity' : 0.0,
@@ -31,7 +28,8 @@ class MissionComputer:
             'mars_base_internal_oxygen' : 0.0
         }
 
-    #4. 문제 3에서 제작한 DummySensor 클래스를 ds라는 이름으로 인스턴스화 시킨다.(문제 3은 오타로 문제 6이 맞는 것 같다.)
+
+    #4. 문제 3에서 제작한 DummySensor 클래스를 ds라는 이름으로 인스턴스화 시킨다.(문제 3은 오타로 문제 6이 맞는 것 같다. / 여기서 이걸 하는게 맞나??)
     ds = DummySensor()
 
     #5. MissionComputer에 get_sensor_data() 메소드를 추가한다.
@@ -60,7 +58,7 @@ class MissionComputer:
                     env_values[key] = value
                     history[key].append(value)
                 # env_values의 값을 출력한다. 이때 환경 정보의 값은 json 형태로 화면에 출력한다.
-                json_env_values = json.dumps(env_values)
+                json_env_values = json.dumps(env_values, ensure_ascii=False, indent=4)
                 print(json_env_values)
                 print("\n종료하려면 Ctrl+C")
                 # 위의 두 가지 동작을 5초에 한번씩 반복한다.

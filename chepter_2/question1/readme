@@ -1,0 +1,6 @@
+python 으로 브루트포스를 사용하여 비밀번호를 알아내려하니 시간이 너무 오래 소요되어 아예 다른 방법으로 접근을 하였다.
+리눅스에는 c언어 기반으로 zip파일 암호를 알아낼 수 있는 fcrackzip, zip2john이 존재하는데
+fcrackzip로 작업을 진행하니 속도는 월등하게 빠르나 zip파일의 비밀번호를 알아내지 못했다.(fcrackzip -b -c -v a1 -l 6 -u /mnt/c/Users/eunchan/Desktop/SIBAK/emergency_storage_key.zip)
+zip2john로 접근 해시를 추출한 후 비밀번호를 알아내였다.
+그렇다면 python으로 zip2john와 동일한 방식의 작업은 불가능 한걸까?
+mars06
