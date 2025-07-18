@@ -22,7 +22,7 @@ def unlock_zip(args):
             print(f"\n[성공] 비밀번호를 찾았습니다: {password}")
             #4. 암호를 푸는데 성공하면 암호는 password.txt로 저장한다.
             with open('chepter_2/question1/password.txt', 'w', encoding='utf-8') as f:
-                f.write(f'password = {password}')
+                f.write(f'{password}')
             return password
     except (RuntimeError, zipfile.BadZipFile, zlib.error):
         return False
