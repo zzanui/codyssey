@@ -9,7 +9,7 @@ import io
 from multiprocessing import Pool, Manager, Process
 
 # 비밀번호 확인 함수
-#암호를 푸는 코드를 unlock_zip() 이라는 이름으로 함수로 만든다.
+#2. 암호를 푸는 코드를 unlock_zip() 이라는 이름으로 함수로 만든다.
 def unlock_zip(args):
     #인수들 넣어버리기
     zip_bytes, password, found_flag = args
@@ -44,7 +44,7 @@ def split_first_characters():
 # 그룹별 브루트포스 실행 함수
 #(실행함수, zip파일, 실행시작단어, 사용 코어 갯수, 시작시간, 시간??)
 #1. emergency_storage_key.zip 의 암호를 풀 수 있는 코드를 작성한다. 단 암호는 특수 문자없이 숫자와 소문자 알파벳으로 구성된 6자리 문자로 되어 있다.
-def brute_force_group(zip_bytes, first_chars, found_flag, start_time, time_str):
+def brute_force_group(zip_bytes, first_chars, found_flag, start_time):
     #소문자 + 숫자
     rest_chars = string.ascii_lowercase + string.digits
     #6글자의 모든조합으로 비밀번호 생성
@@ -76,7 +76,7 @@ def brute_force_group(zip_bytes, first_chars, found_flag, start_time, time_str):
 
 # 메인 실행부
 if __name__ == '__main__':
-    #password 저장 경로
+    #zip파일 경로
     zip_file_path = 'chepter_2/question1/emergency_storage_key.zip'
     #메모리 낭비를 방지하기 위해 미리 메모리에 적재
     with open(zip_file_path, 'rb') as f:
@@ -88,7 +88,6 @@ if __name__ == '__main__':
 
     #시작시간 설정
     start_time = time.time()
-    time_str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time))
     # 암호를 좀 더 빠르게 풀 수 있는 알고리즘을 제시하고 코드로 구현한다.
     print(f"=== 3개 그룹 브루트포스 시작 ===")
 
@@ -99,8 +98,8 @@ if __name__ == '__main__':
 
     #섹션 갯수만큼 반복
     for group in groups:
-        #(실행함수, zip파일, 실행시작단어, 사용 코어 갯수, 시작시간, 시간??)
-        p = Process(target=brute_force_group, args=(zip_bytes, group, found_flag, start_time, time_str))
+        #(실행함수, zip파일, 실행시작단어, 완료여부, 시작시간)
+        p = Process(target=brute_force_group, args=(zip_bytes, group, found_flag, start_time))
         p.start()
         processes.append(p)
 

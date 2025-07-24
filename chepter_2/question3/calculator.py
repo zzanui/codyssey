@@ -22,6 +22,8 @@ class Calculator(CalculatorUI):
         #추후 작성
         elif text == '=':
             try:
+                #보너스1. 사칙연산 계산
+                #self.display에 있는 계산식을 계산 후 문자열로 전환하여 다시 출력
                 result = str(eval(self.display.text()))
                 self.display.setText(result)
             except:
