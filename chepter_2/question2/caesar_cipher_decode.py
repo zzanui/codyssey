@@ -10,17 +10,18 @@ def caesar_cipher_decode(target_text):
     for shift in range(1, 26):
         result = ''
         for char in target_text:
-            #소문자일경우 아스키코드로 변환
+            #소문자일경우
             if char.islower():
                 #몇 칸 시프트인지 기록
                 idx = (ord(char) - ord('a') - shift) % 26
-                
                 result += chr(ord('a') + idx)
+                # print(f'소문자 idx, result = {idx, result, char,'-',idx}')
+            #대문자일경우
             elif char.isupper():
                 #몇 칸 시프트인지 기록
                 idx = (ord(char) - ord('A') - shift) % 26
-                #복호화
                 result += chr(ord('A') + idx)
+                # print(f'대문자 idx, result = {idx, result, char,'-',idx}')
             else:
                 result += char
         results.append((shift, result))
